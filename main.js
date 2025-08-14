@@ -10,7 +10,7 @@ const toggleFormBtn = document.querySelector(".btn-add");
 const formSection = document.querySelector(".form_section");
 const addWomenBtn = formSection.querySelector(".js-add-btn");
 
-let women = JSON.parse(localStorage.getItem("Women")) || [
+let women = JSON.parse(localStorage.getItem("women")) || [
     {
         name: "Rosana",
         country: "España",
@@ -46,12 +46,12 @@ function renderWomen (data) {
 
     //buscar
 function handleSearch () {
-    const descFilter = inputDesc.value.toLocaleLowerCase();
-    const nameFilter = inputName.value.toLocaleLowerCase();
+    const descFilter = inputDesc.value.toLowerCase();
+    const nameFilter = inputName.value.toLowerCase();
 
     const filtered = women.filter((women) => 
-        women.desc.toLocaleLowerCase().includes(descFilter) &&
-        women.name.toLocaleLowerCase().includes(nameFilter)
+        women.desc.toLowerCase().includes(descFilter) &&
+        women.name.toLowerCase().includes(nameFilter)
     );
     renderWomen(filtered);
 }
@@ -59,13 +59,13 @@ function handleSearch () {
 
     //Mostrar formulario
     toggleFormBtn.addEventListener("click", () => {
-        formSection.classList.toggle("hiden");
+        formSection.classList.toggle("hidden");
         console.log(formSection.classList)
     });
 
     //Añadir nueva mujer
  addWomenBtn.addEventListener("click", () => {
-    event.preventDefault(); // importante si botón está en form
+    // event.preventDefault(); // importante si botón está en form
     const name = formSection.querySelector(".js-name").value.trim();
     const country = formSection.querySelector(".js-country").value.trim();
     const desc = formSection.querySelector(".js-desc").value.trim();
@@ -77,9 +77,12 @@ function handleSearch () {
         localStorage.setItem("women", JSON.stringify(women));
         renderWomen(women);
         formSection.classList.add("hidden");
-        formSection.querySelectorAll("input").forEach(i => i.value = "");
+        formSection.querySelectorAll("input").forEach((i) => (i.value = ""));
     }
+    
 });
+console.log(formSection);
+
 
 renderWomen(women);
 
