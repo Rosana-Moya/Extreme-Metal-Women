@@ -35,7 +35,7 @@ function renderWomen (data) {
     data.forEach((women) => {
      womenList.innerHTML = womenList.innerHTML + `
     <li class="card">
-    <article>
+    <article class="article">
           <img class="card_img" src="${women.image}" alt="${women.name}" />
           <h3 class="card_title">${women.name}</h3>
           <p class="card_description">${women.desc}</p>
@@ -59,7 +59,7 @@ function handleSearch () {
 
     //Mostrar formulario
     toggleFormBtn.addEventListener("click", () => {
-        formSection.classList.toggle("hidden");
+        formSection.classList.toggle("hiden");
         console.log(formSection.classList)
     });
 
